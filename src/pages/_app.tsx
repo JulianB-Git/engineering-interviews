@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { AppProvider } from "../context/appContext";
 import { useState, useEffect } from "react";
 
-const token = "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";
+const token = "YOUR_GITHUB_API_TOKEN";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [repos, setRepos] = useState<any[]>([]);

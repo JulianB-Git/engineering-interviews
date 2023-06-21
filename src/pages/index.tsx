@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 import AppContext from "@/context/appContext";
 
 const inter = Inter({ subsets: ["latin"] });
-// const token = "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";
 
 export default function Home() {
   const { repos, handleToggle } = useContext(AppContext);
