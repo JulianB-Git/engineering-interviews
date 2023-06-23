@@ -15,7 +15,7 @@ export default function Home() {
       <main
         className={`flex min-h-screen flex-col items-center justify-center gap-2 p-24 ${inter.className}`}
       >
-        Signed in as {session.user.email} <br />
+        Signed in as {session?.user?.email} <br />
         <button
           className='bg-gray-500 border rounded py-1 px-2'
           onClick={() => signOut()}
