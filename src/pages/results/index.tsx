@@ -1,11 +1,21 @@
 import AppContext from "@/context/appContext";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Page() {
   const { repos } = useContext(AppContext);
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const filtered = repos.filter((o) => o.isChecked);
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <div className='flex min-h-screen flex-col items-center justify-center gap-2 p-24'>

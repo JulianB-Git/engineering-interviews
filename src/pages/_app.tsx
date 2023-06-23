@@ -2,10 +2,14 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { AppProvider } from "../context/appContext";
 import { useState, useEffect } from "react";
+import { SessionProvider } from "next-auth/react";
 
-const token = "YOUR_GITHUB_API_TOKEN";
+const token = process.env.NEXT_PUBLIC_GIT_TOKEN;
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const [repos, setRepos] = useState<any[]>([]);
 
   const fetchRepos = async () => {
@@ -50,8 +54,10 @@ export default function App({ Component, pageProps }: AppProps) {
   const value = { repos, handleToggle };
 
   return (
-    <AppProvider value={value}>
-      <Component {...pageProps} />
-    </AppProvider>
+    <SessionProvider session={session}>
+      <AppProvider value={value}>
+        <Component {...pageProps} />
+      </AppProvider>
+    </SessionProvider>
   );
 }
